@@ -1,0 +1,21 @@
+[project]
+name = "mdcitefix"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "prek>=0.2.27",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.11",
+    "ty>=0.0.10",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "performance: performance benchmark tests (deselect with '-m \"not performance\"')",
+]
