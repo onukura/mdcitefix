@@ -1,0 +1,7 @@
+{
+  "description": "Tests handling of unused reference definitions with drop_unused_defs=false",
+  "tags": ["error-handling", "unused-refs"],
+  "expected_report": {
+    "unused_count": 3
+  }
+}

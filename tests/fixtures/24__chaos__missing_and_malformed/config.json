@@ -1,0 +1,5 @@
+{
+  "dedupe_by_url": true,
+  "drop_unused_defs": true,
+  "compact_number_ranges": false
+}

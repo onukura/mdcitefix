@@ -1,0 +1,7 @@
+{
+  "description": "Tests URL normalization by removing UTM tracking parameters and deduplicating references",
+  "tags": ["url-normalization", "deduplication", "utm-params"],
+  "expected_report": {
+    "merged_count": 4
+  }
+}

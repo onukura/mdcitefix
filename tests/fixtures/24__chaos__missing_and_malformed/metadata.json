@@ -1,0 +1,4 @@
+{
+  "description": "Complete chaos: missing references, malformed URLs, duplicates, code block protection, unclosed fences. Tests error handling, MISSING_URL placeholders, and robustness.",
+  "tags": ["chaos", "missing-refs", "malformed-urls", "code-protection", "error-handling"]
+}

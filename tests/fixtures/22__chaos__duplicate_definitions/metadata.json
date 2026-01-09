@@ -1,0 +1,4 @@
+{
+  "description": "Tests handling of duplicate reference definitions where the same citation number [N] is defined multiple times with different URLs. Tool should use first definition encountered.",
+  "tags": ["chaos", "duplicate-definitions", "conflicting-urls"]
+}

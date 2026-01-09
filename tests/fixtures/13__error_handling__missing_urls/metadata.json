@@ -1,0 +1,7 @@
+{
+  "description": "Tests handling of citations without corresponding reference definitions, which should generate MISSING_URL placeholders",
+  "tags": ["error-handling", "missing-urls"],
+  "expected_report": {
+    "missing_count": 4
+  }
+}

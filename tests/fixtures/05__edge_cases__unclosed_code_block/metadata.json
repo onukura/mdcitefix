@@ -1,0 +1,7 @@
+{
+  "description": "Tests handling of unclosed fence code blocks, which should generate warnings and protect the content",
+  "tags": ["edge-case", "code-protection", "warnings"],
+  "expected_report": {
+    "warnings_count": 1
+  }
+}

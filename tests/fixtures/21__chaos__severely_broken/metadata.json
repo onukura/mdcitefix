@@ -1,0 +1,4 @@
+{
+  "description": "Severely broken document with duplicate URLs across multiple citation numbers, extreme disorder in numbering (87, 3, 100, etc.), and many unused reference definitions",
+  "tags": ["chaos", "deduplication", "extreme-disorder", "unused-refs"]
+}
