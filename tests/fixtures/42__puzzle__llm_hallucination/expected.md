@@ -1,0 +1,581 @@
+# LLM Hallucination - The Ultimate Citation Chaos
+
+This simulates the kind of citation chaos that LLMs often generate in reports.
+
+## Introduction (Citations Out of Order)
+
+Recent advances in AI [1] have revolutionized the field. According to [2], building on [3],
+and contradicting [4], we observe that [1, 2, 3, 4] all point to similar conclusions.
+However, earlier work [5] predates [6], which references [999] (not yet defined).
+
+## Literature Review (Duplicate URLs with Different Numbers)
+
+The seminal paper [6] established the foundation. This was expanded by [5], refined by [2],
+and critiqued by [7]. Interestingly, [8] cites [2, 5, 6, 7], but [9] contradicts [8].
+Moreover, [10] all reference the same source with different numbers.
+
+## Methodology (Missing and Phantom References)
+
+We follow [101] (missing), inspired by [102] (missing), and guided by [103] (exists).
+The approach from [404] (missing) contradicts [200-205] (partially missing).
+See also [11] for future work and [12] for comprehensive analysis (both missing).
+
+## Results (Random Number Explosion)
+
+Findings support [3, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] with probability > 0.95.
+Secondary evidence [14, 15, 16, 17, 24, 25, 26, 27, 28, 29, 30] suggests correlation.
+Tertiary analysis [100-110, 200-210, 300-310] provides context (mostly undefined).
+
+## Discussion (Same Content, Different Citations)
+
+According to Smith et al. [6], Jones et al. [5], and Davis et al. [2],
+the results are significant. Smith's work [10] (same as [6]) and
+Jones's paper [20] (same as [5]) reinforce these findings.
+Davis's research [30] (same as [2]) provides additional support.
+
+## Contradictory Citations
+
+The paper [13] claims X, but [13] also claims not-X in section 2.
+Reference [31] supports [32], but [32] contradicts [31].
+Circular reasoning: [33] cites [6], [6] cites [24], [24] cites [33].
+
+## Formatting Chaos (Mixed Styles)
+
+Some citations use [25, 34, 35] format.
+Others use [14, 36, 37] with semicolons.
+Ranges appear as [5, 26, 38] or [15, 39, 40].
+Mixed: [27, 41, 42].
+
+## Unicode and Special Cases
+
+論文 [43] は日本語で書かれています。
+The émigré study [44] uses accents.
+Mathematical proof [102]: ∀x∈ℝ, ∃y∈ℝ such that x+y=0.
+Emoji paper [103]: 🚀 to the moon! 🌙
+
+## Extreme Nesting and Recursion
+
+Study [45] references [46], which references [47], which references [48],
+which references [49], which references [50], which references [110] (circular!).
+
+The meta-analysis [51] analyzes analyses [52, 53, 54] of original studies [2, 5, 6].
+
+## URL Chaos (Same URL, Many Numbers)
+
+All of [55] point to https://example.com/popular-paper.
+All of [56, 57, 58, 59, 60, 61] point to https://example.com/highly-cited.
+Different URLs but same topic: [62, 63, 64].
+
+## The Grand Finale (Everything at Once)
+
+综合analysis [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489] incorporating perspectives from [490, 491, 492], [493, 494, 495],
+and [496, 497, 498, 499], while acknowledging limitations [11, 12, 393], suggests that
+**bold [6]**, *italic [5]*, and `code[2]` citations in [2, 5, 6] contexts
+> with blockquotes [65] and lists:
+- Item [13]
+  - Sub [66]
+    - Deep [31]
+
+Lead to conclusions [11, 12] that require further investigation.
+
+## References (Partial and Chaotic)
+<!-- mdcitefix:refs -->
+[1]: https://example.com/ai-advances
+[2]: https://example.com/davis-2022
+[3]: https://example.com/foundation
+[4]: https://example.com/contradicting
+[5]: https://example.com/jones-2021
+[6]: https://example.com/smith-2020
+[7]: https://example.com/critique
+[8]: https://example.com/comprehensive
+[9]: https://example.com/counter-argument
+[10]: https://example.com/same-source
+[11]: MISSING_URL
+[12]: MISSING_URL
+[13]: https://example.com/results-significant
+[14]: MISSING_URL
+[15]: MISSING_URL
+[16]: MISSING_URL
+[17]: MISSING_URL
+[18]: MISSING_URL
+[19]: MISSING_URL
+[20]: MISSING_URL
+[21]: MISSING_URL
+[22]: MISSING_URL
+[23]: https://example.com/high-probability
+[24]: https://example.com/circular-3
+[25]: https://example.com/format-2
+[26]: MISSING_URL
+[27]: MISSING_URL
+[28]: MISSING_URL
+[29]: MISSING_URL
+[30]: MISSING_URL
+[31]: https://example.com/supports-eight
+[32]: https://example.com/contradicts-seven
+[33]: https://example.com/circular-1
+[34]: https://example.com/format-1
+[35]: https://example.com/format-3
+[36]: MISSING_URL
+[37]: MISSING_URL
+[38]: MISSING_URL
+[39]: MISSING_URL
+[40]: MISSING_URL
+[41]: MISSING_URL
+[42]: MISSING_URL
+[43]: https://example.com/japanese-paper
+[44]: MISSING_URL
+[45]: https://example.com/circular-start
+[46]: https://example.com/circular-2
+[47]: https://example.com/circular-3-dup
+[48]: https://example.com/circular-4
+[49]: MISSING_URL
+[50]: MISSING_URL
+[51]: https://example.com/meta-analysis
+[52]: MISSING_URL
+[53]: MISSING_URL
+[54]: MISSING_URL
+[55]: https://example.com/popular-paper
+[56]: https://example.com/highly-cited
+[57]: MISSING_URL
+[58]: MISSING_URL
+[59]: MISSING_URL
+[60]: MISSING_URL
+[61]: MISSING_URL
+[62]: https://example.com/topic-1
+[63]: https://example.com/topic-2
+[64]: https://example.com/topic-3
+[65]: MISSING_URL
+[66]: MISSING_URL
+[67]: MISSING_URL
+[68]: MISSING_URL
+[69]: MISSING_URL
+[70]: MISSING_URL
+[71]: MISSING_URL
+[72]: MISSING_URL
+[73]: MISSING_URL
+[74]: MISSING_URL
+[75]: MISSING_URL
+[76]: MISSING_URL
+[77]: MISSING_URL
+[78]: MISSING_URL
+[79]: MISSING_URL
+[80]: MISSING_URL
+[81]: MISSING_URL
+[82]: MISSING_URL
+[83]: MISSING_URL
+[84]: MISSING_URL
+[85]: MISSING_URL
+[86]: MISSING_URL
+[87]: MISSING_URL
+[88]: MISSING_URL
+[89]: MISSING_URL
+[90]: MISSING_URL
+[91]: MISSING_URL
+[92]: MISSING_URL
+[93]: MISSING_URL
+[94]: MISSING_URL
+[95]: MISSING_URL
+[96]: MISSING_URL
+[97]: MISSING_URL
+[98]: MISSING_URL
+[99]: MISSING_URL
+[100]: MISSING_URL
+[101]: MISSING_URL
+[102]: MISSING_URL
+[103]: MISSING_URL
+[104]: MISSING_URL
+[105]: MISSING_URL
+[106]: MISSING_URL
+[107]: MISSING_URL
+[108]: MISSING_URL
+[109]: MISSING_URL
+[110]: MISSING_URL
+[111]: MISSING_URL
+[112]: MISSING_URL
+[113]: MISSING_URL
+[114]: MISSING_URL
+[115]: MISSING_URL
+[116]: MISSING_URL
+[117]: MISSING_URL
+[118]: MISSING_URL
+[119]: MISSING_URL
+[120]: MISSING_URL
+[121]: https://example.com/exists-methodology
+[122]: MISSING_URL
+[123]: MISSING_URL
+[124]: MISSING_URL
+[125]: MISSING_URL
+[126]: MISSING_URL
+[127]: MISSING_URL
+[128]: MISSING_URL
+[129]: MISSING_URL
+[130]: MISSING_URL
+[131]: MISSING_URL
+[132]: MISSING_URL
+[133]: MISSING_URL
+[134]: MISSING_URL
+[135]: MISSING_URL
+[136]: MISSING_URL
+[137]: MISSING_URL
+[138]: MISSING_URL
+[139]: MISSING_URL
+[140]: MISSING_URL
+[141]: MISSING_URL
+[142]: MISSING_URL
+[143]: MISSING_URL
+[144]: MISSING_URL
+[145]: MISSING_URL
+[146]: MISSING_URL
+[147]: MISSING_URL
+[148]: MISSING_URL
+[149]: MISSING_URL
+[150]: MISSING_URL
+[151]: MISSING_URL
+[152]: MISSING_URL
+[153]: MISSING_URL
+[154]: MISSING_URL
+[155]: MISSING_URL
+[156]: MISSING_URL
+[157]: MISSING_URL
+[158]: MISSING_URL
+[159]: MISSING_URL
+[160]: MISSING_URL
+[161]: MISSING_URL
+[162]: MISSING_URL
+[163]: MISSING_URL
+[164]: MISSING_URL
+[165]: MISSING_URL
+[166]: MISSING_URL
+[167]: MISSING_URL
+[168]: MISSING_URL
+[169]: MISSING_URL
+[170]: MISSING_URL
+[171]: MISSING_URL
+[172]: MISSING_URL
+[173]: MISSING_URL
+[174]: MISSING_URL
+[175]: MISSING_URL
+[176]: MISSING_URL
+[177]: MISSING_URL
+[178]: MISSING_URL
+[179]: MISSING_URL
+[180]: MISSING_URL
+[181]: MISSING_URL
+[182]: MISSING_URL
+[183]: MISSING_URL
+[184]: MISSING_URL
+[185]: MISSING_URL
+[186]: MISSING_URL
+[187]: MISSING_URL
+[188]: MISSING_URL
+[189]: MISSING_URL
+[190]: MISSING_URL
+[191]: MISSING_URL
+[192]: MISSING_URL
+[193]: MISSING_URL
+[194]: MISSING_URL
+[195]: MISSING_URL
+[196]: MISSING_URL
+[197]: MISSING_URL
+[198]: MISSING_URL
+[199]: MISSING_URL
+[200]: MISSING_URL
+[201]: MISSING_URL
+[202]: MISSING_URL
+[203]: MISSING_URL
+[204]: MISSING_URL
+[205]: MISSING_URL
+[206]: MISSING_URL
+[207]: MISSING_URL
+[208]: MISSING_URL
+[209]: MISSING_URL
+[210]: MISSING_URL
+[211]: MISSING_URL
+[212]: MISSING_URL
+[213]: MISSING_URL
+[214]: MISSING_URL
+[215]: MISSING_URL
+[216]: MISSING_URL
+[217]: MISSING_URL
+[218]: MISSING_URL
+[219]: MISSING_URL
+[220]: MISSING_URL
+[221]: MISSING_URL
+[222]: MISSING_URL
+[223]: MISSING_URL
+[224]: MISSING_URL
+[225]: MISSING_URL
+[226]: MISSING_URL
+[227]: MISSING_URL
+[228]: MISSING_URL
+[229]: MISSING_URL
+[230]: MISSING_URL
+[231]: MISSING_URL
+[232]: MISSING_URL
+[233]: MISSING_URL
+[234]: MISSING_URL
+[235]: MISSING_URL
+[236]: MISSING_URL
+[237]: MISSING_URL
+[238]: MISSING_URL
+[239]: MISSING_URL
+[240]: MISSING_URL
+[241]: MISSING_URL
+[242]: MISSING_URL
+[243]: MISSING_URL
+[244]: MISSING_URL
+[245]: MISSING_URL
+[246]: MISSING_URL
+[247]: MISSING_URL
+[248]: MISSING_URL
+[249]: MISSING_URL
+[250]: MISSING_URL
+[251]: MISSING_URL
+[252]: MISSING_URL
+[253]: MISSING_URL
+[254]: MISSING_URL
+[255]: MISSING_URL
+[256]: MISSING_URL
+[257]: MISSING_URL
+[258]: MISSING_URL
+[259]: MISSING_URL
+[260]: MISSING_URL
+[261]: MISSING_URL
+[262]: MISSING_URL
+[263]: MISSING_URL
+[264]: MISSING_URL
+[265]: MISSING_URL
+[266]: MISSING_URL
+[267]: MISSING_URL
+[268]: MISSING_URL
+[269]: MISSING_URL
+[270]: MISSING_URL
+[271]: MISSING_URL
+[272]: MISSING_URL
+[273]: MISSING_URL
+[274]: MISSING_URL
+[275]: MISSING_URL
+[276]: MISSING_URL
+[277]: MISSING_URL
+[278]: MISSING_URL
+[279]: MISSING_URL
+[280]: MISSING_URL
+[281]: MISSING_URL
+[282]: MISSING_URL
+[283]: MISSING_URL
+[284]: MISSING_URL
+[285]: MISSING_URL
+[286]: MISSING_URL
+[287]: MISSING_URL
+[288]: MISSING_URL
+[289]: MISSING_URL
+[290]: MISSING_URL
+[291]: MISSING_URL
+[292]: MISSING_URL
+[293]: MISSING_URL
+[294]: MISSING_URL
+[295]: MISSING_URL
+[296]: MISSING_URL
+[297]: MISSING_URL
+[298]: MISSING_URL
+[299]: MISSING_URL
+[300]: MISSING_URL
+[301]: MISSING_URL
+[302]: MISSING_URL
+[303]: MISSING_URL
+[304]: MISSING_URL
+[305]: MISSING_URL
+[306]: MISSING_URL
+[307]: MISSING_URL
+[308]: MISSING_URL
+[309]: MISSING_URL
+[310]: MISSING_URL
+[311]: MISSING_URL
+[312]: MISSING_URL
+[313]: MISSING_URL
+[314]: MISSING_URL
+[315]: MISSING_URL
+[316]: MISSING_URL
+[317]: MISSING_URL
+[318]: MISSING_URL
+[319]: MISSING_URL
+[320]: MISSING_URL
+[321]: MISSING_URL
+[322]: MISSING_URL
+[323]: MISSING_URL
+[324]: MISSING_URL
+[325]: MISSING_URL
+[326]: MISSING_URL
+[327]: MISSING_URL
+[328]: MISSING_URL
+[329]: MISSING_URL
+[330]: MISSING_URL
+[331]: MISSING_URL
+[332]: MISSING_URL
+[333]: MISSING_URL
+[334]: MISSING_URL
+[335]: MISSING_URL
+[336]: MISSING_URL
+[337]: MISSING_URL
+[338]: MISSING_URL
+[339]: MISSING_URL
+[340]: MISSING_URL
+[341]: MISSING_URL
+[342]: MISSING_URL
+[343]: MISSING_URL
+[344]: MISSING_URL
+[345]: MISSING_URL
+[346]: MISSING_URL
+[347]: MISSING_URL
+[348]: MISSING_URL
+[349]: MISSING_URL
+[350]: MISSING_URL
+[351]: MISSING_URL
+[352]: MISSING_URL
+[353]: MISSING_URL
+[354]: MISSING_URL
+[355]: MISSING_URL
+[356]: MISSING_URL
+[357]: MISSING_URL
+[358]: MISSING_URL
+[359]: MISSING_URL
+[360]: MISSING_URL
+[361]: MISSING_URL
+[362]: MISSING_URL
+[363]: MISSING_URL
+[364]: MISSING_URL
+[365]: MISSING_URL
+[366]: MISSING_URL
+[367]: MISSING_URL
+[368]: MISSING_URL
+[369]: MISSING_URL
+[370]: MISSING_URL
+[371]: MISSING_URL
+[372]: MISSING_URL
+[373]: MISSING_URL
+[374]: MISSING_URL
+[375]: MISSING_URL
+[376]: MISSING_URL
+[377]: MISSING_URL
+[378]: MISSING_URL
+[379]: MISSING_URL
+[380]: MISSING_URL
+[381]: MISSING_URL
+[382]: MISSING_URL
+[383]: MISSING_URL
+[384]: MISSING_URL
+[385]: MISSING_URL
+[386]: MISSING_URL
+[387]: MISSING_URL
+[388]: MISSING_URL
+[389]: MISSING_URL
+[390]: MISSING_URL
+[391]: MISSING_URL
+[392]: MISSING_URL
+[393]: MISSING_URL
+[394]: MISSING_URL
+[395]: MISSING_URL
+[396]: MISSING_URL
+[397]: MISSING_URL
+[398]: MISSING_URL
+[399]: MISSING_URL
+[400]: MISSING_URL
+[401]: MISSING_URL
+[402]: MISSING_URL
+[403]: MISSING_URL
+[404]: MISSING_URL
+[405]: MISSING_URL
+[406]: MISSING_URL
+[407]: MISSING_URL
+[408]: MISSING_URL
+[409]: MISSING_URL
+[410]: MISSING_URL
+[411]: MISSING_URL
+[412]: MISSING_URL
+[413]: MISSING_URL
+[414]: MISSING_URL
+[415]: MISSING_URL
+[416]: MISSING_URL
+[417]: MISSING_URL
+[418]: MISSING_URL
+[419]: MISSING_URL
+[420]: MISSING_URL
+[421]: MISSING_URL
+[422]: MISSING_URL
+[423]: MISSING_URL
+[424]: MISSING_URL
+[425]: MISSING_URL
+[426]: MISSING_URL
+[427]: MISSING_URL
+[428]: MISSING_URL
+[429]: MISSING_URL
+[430]: MISSING_URL
+[431]: MISSING_URL
+[432]: MISSING_URL
+[433]: MISSING_URL
+[434]: MISSING_URL
+[435]: MISSING_URL
+[436]: MISSING_URL
+[437]: MISSING_URL
+[438]: MISSING_URL
+[439]: MISSING_URL
+[440]: MISSING_URL
+[441]: MISSING_URL
+[442]: MISSING_URL
+[443]: MISSING_URL
+[444]: MISSING_URL
+[445]: MISSING_URL
+[446]: MISSING_URL
+[447]: MISSING_URL
+[448]: MISSING_URL
+[449]: MISSING_URL
+[450]: MISSING_URL
+[451]: MISSING_URL
+[452]: MISSING_URL
+[453]: MISSING_URL
+[454]: MISSING_URL
+[455]: MISSING_URL
+[456]: MISSING_URL
+[457]: MISSING_URL
+[458]: MISSING_URL
+[459]: MISSING_URL
+[460]: MISSING_URL
+[461]: MISSING_URL
+[462]: MISSING_URL
+[463]: MISSING_URL
+[464]: MISSING_URL
+[465]: MISSING_URL
+[466]: MISSING_URL
+[467]: MISSING_URL
+[468]: MISSING_URL
+[469]: MISSING_URL
+[470]: MISSING_URL
+[471]: MISSING_URL
+[472]: MISSING_URL
+[473]: MISSING_URL
+[474]: MISSING_URL
+[475]: MISSING_URL
+[476]: MISSING_URL
+[477]: MISSING_URL
+[478]: MISSING_URL
+[479]: MISSING_URL
+[480]: MISSING_URL
+[481]: MISSING_URL
+[482]: MISSING_URL
+[483]: MISSING_URL
+[484]: MISSING_URL
+[485]: MISSING_URL
+[486]: MISSING_URL
+[487]: MISSING_URL
+[488]: MISSING_URL
+[489]: MISSING_URL
+[490]: MISSING_URL
+[491]: MISSING_URL
+[492]: MISSING_URL
+[493]: MISSING_URL
+[494]: MISSING_URL
+[495]: MISSING_URL
+[496]: MISSING_URL
+[497]: MISSING_URL
+[498]: MISSING_URL
+[499]: MISSING_URL
