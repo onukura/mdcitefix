@@ -1,10 +1,13 @@
 [project]
 name = "mdcitefix"
 version = "0.1.0"
-description = "Add your description here"
+description = "Repair and normalize numeric citations in Markdown files"
 readme = "README.md"
 requires-python = ">=3.10,<3.15"
 dependencies = []
+
+[project.scripts]
+mdcitefix = "mdcitefix.cli:main"
 
 [dependency-groups]
 dev = [
