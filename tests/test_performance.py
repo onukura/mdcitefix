@@ -1,7 +1,7 @@
 import pytest
 import time
 from pathlib import Path
-from mdcitefix.core import fix_markdown, FixOptions
+from mdcitefix.core import fix_markdown
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
 
@@ -10,10 +10,13 @@ FIXTURES_DIR = Path(__file__).parent / "fixtures"
 pytestmark = pytest.mark.performance
 
 
-@pytest.mark.parametrize("test_name,max_time_ms", [
-    ("19__performance__medium_500_refs", 100),
-    ("20__performance__large_1000_refs", 500),
-])
+@pytest.mark.parametrize(
+    "test_name,max_time_ms",
+    [
+        ("19__performance__medium_500_refs", 100),
+        ("20__performance__large_1000_refs", 500),
+    ],
+)
 def test_performance_benchmark(test_name, max_time_ms):
     """パフォーマンスベンチマーク"""
     test_dir = FIXTURES_DIR / test_name

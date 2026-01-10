@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+from functools import lru_cache
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 
+@lru_cache(maxsize=1024)
 def normalize_url(url: str) -> str:
     try:
         sp = urlsplit(url.strip())

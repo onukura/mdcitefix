@@ -19,11 +19,31 @@ def main(argv: list[str] | None = None) -> int:
     )
     p.add_argument("--report", help="Write JSON report to file.")
     p.add_argument("--no-dedupe", action="store_true", help="Disable URL deduplication")
-    p.add_argument("--keep-unused-defs", action="store_true", help="Keep unused reference definitions")
-    p.add_argument("--compact-ranges", action="store_true", help="Compact number ranges (e.g., [1-3])")
-    p.add_argument("--ensure-references-section", action="store_true", help="Ensure ## References section exists")
-    p.add_argument("--preserve-inline-links", action="store_true", help="Preserve existing [N](URL) format in text")
-    p.add_argument("--insert-inline-links", action="store_true", help="Convert all citations to [N](URL) format")
+    p.add_argument(
+        "--keep-unused-defs",
+        action="store_true",
+        help="Keep unused reference definitions",
+    )
+    p.add_argument(
+        "--compact-ranges",
+        action="store_true",
+        help="Compact number ranges (e.g., [1-3])",
+    )
+    p.add_argument(
+        "--ensure-references-section",
+        action="store_true",
+        help="Ensure ## References section exists",
+    )
+    p.add_argument(
+        "--preserve-inline-links",
+        action="store_true",
+        help="Preserve existing [N](URL) format in text",
+    )
+    p.add_argument(
+        "--insert-inline-links",
+        action="store_true",
+        help="Convert all citations to [N](URL) format",
+    )
     args = p.parse_args(argv)
 
     opt = FixOptions(

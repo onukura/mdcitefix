@@ -111,6 +111,9 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
         if kept in renumber_map:
             merged_key_to_number[old] = renumber_map[kept]
 
+    # Build reverse renumber_map for O(1) lookup (optimization)
+    reverse_renumber_map: Dict[str, str] = {v: k for k, v in renumber_map.items()}
+
     # 8) rewrite in-text citations (only unprotected segments)
     def map_key(k: str) -> str:
         if k in renumber_map:
@@ -159,12 +162,8 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
                 # Get URL from key_to_entry for the first mapped number
                 if uniq:
                     first_key = uniq[0]
-                    # Find original key for this mapped number
-                    orig_key = None
-                    for k, v in renumber_map.items():
-                        if v == first_key:
-                            orig_key = k
-                            break
+                    # Find original key for this mapped number using reverse map
+                    orig_key = reverse_renumber_map.get(first_key)
                     if orig_key:
                         url_data = key_to_entry.get(orig_key, (None, None, ""))
                         inline_url = url_data[0] if url_data[0] else "MISSING_URL"

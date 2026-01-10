@@ -1,5 +1,6 @@
 from mdcitefix.core import fix_markdown, FixOptions
 
+
 def test_renumber_attach_defs():
     md = """
 Text [2] then [1].
@@ -12,6 +13,7 @@ Text [2] then [1].
     assert "Text [1] then [2]." in out
     assert "[1]: https://b.example" in out
     assert "[2]: https://a.example" in out
+
 
 def test_dedupe_same_url():
     md = """
@@ -27,4 +29,3 @@ A [1] B [2]
     assert rep.merged[0] == ("2", "1")
     # Only one URL definition remains
     assert out.count("]: https://") == 1
-

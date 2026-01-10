@@ -10,7 +10,11 @@ def collect_fixture_cases():
     """フィクスチャディレクトリから全テストケースを収集"""
     cases = []
     for test_dir in sorted(FIXTURES_DIR.iterdir()):
-        if not test_dir.is_dir() or test_dir.name.startswith('.') or test_dir.name == '__pycache__':
+        if (
+            not test_dir.is_dir()
+            or test_dir.name.startswith(".")
+            or test_dir.name == "__pycache__"
+        ):
             continue
         input_file = test_dir / "input.md"
         expected_file = test_dir / "expected.md"
