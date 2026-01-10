@@ -1,0 +1,19 @@
+# Consecutive Citations
+
+Multiple consecutive citations [1][2][3][4][1].
+
+No space between [6][7][2].
+
+Mixed with text[9][3]more text[4].
+
+With punctuation [12][13][5], and [15][6].
+
+Different formats [17] [18] [7].
+<!-- mdcitefix:refs -->
+[1]: https://five.example.com
+[2]: https://eight.example.com
+[3]: https://ten.example.com
+[4]: https://eleven.example.com
+[5]: https://fourteen.example.com
+[6]: https://sixteen.example.com
+[7]: https://nineteen.example.com
