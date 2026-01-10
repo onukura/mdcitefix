@@ -18,6 +18,7 @@ class CiteToken:
     span_start: int
     span_end: int
     keys: List[str]  # old numbers as strings
+    inline_url: Optional[str] = None  # URL if citation is in [N](URL) format
 
 
 def split_protected_segments(
@@ -102,6 +103,11 @@ _CITE_RE = re.compile(
     r"\[(?P<body>\d+(?:\s*(?:,|;)\s*\d+|\s*[-–]\s*\d+)*)\](?![ \t]*[\(\[]|[ \t]*:)"
 )
 
+# Inline link citation: [1](URL) or [1, 2](URL)
+_INLINE_LINK_CITE_RE = re.compile(
+    r"\[(?P<body>\d+(?:\s*(?:,|;)\s*\d+|\s*[-–]\s*\d+)*)\]\((?P<url>[^\)]+)\)"
+)
+
 
 def _expand_body(body: str) -> List[str]:
     body = body.strip()
@@ -126,7 +132,36 @@ def extract_intext_citations(segments: List[Segment]) -> List[CiteToken]:
     for seg in segments:
         if seg.protected:
             continue
+
+        # First, extract inline link citations [N](URL)
+        inline_matches = []
+        for m in _INLINE_LINK_CITE_RE.finditer(seg.text):
+            keys = _expand_body(m.group("body"))
+            if not keys:
+                continue
+            url = m.group("url").strip()
+            tokens.append(
+                CiteToken(
+                    segment_index=seg.index,
+                    span_start=m.start(),
+                    span_end=m.end(),
+                    keys=keys,
+                    inline_url=url,
+                )
+            )
+            inline_matches.append((m.start(), m.end()))
+
+        # Then extract regular citations [N], excluding overlaps with inline links
         for m in _CITE_RE.finditer(seg.text):
+            # Check if this match overlaps with any inline link match
+            overlaps = False
+            for start, end in inline_matches:
+                if not (m.end() <= start or m.start() >= end):
+                    overlaps = True
+                    break
+            if overlaps:
+                continue
+
             keys = _expand_body(m.group("body"))
             if not keys:
                 continue
@@ -136,6 +171,7 @@ def extract_intext_citations(segments: List[Segment]) -> List[CiteToken]:
                     span_start=m.start(),
                     span_end=m.end(),
                     keys=keys,
+                    inline_url=None,
                 )
             )
     return tokens

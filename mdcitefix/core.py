@@ -20,6 +20,8 @@ class FixOptions:
     drop_unused_defs: bool = True
     compact_number_ranges: bool = False
     ensure_references_section: bool = False  # generate/repair "## References" list too
+    preserve_inline_links: bool = False  # keep existing [N](URL) format in text
+    insert_inline_links: bool = False  # convert [N] to [N](URL) format in text
     marker: str = "<!-- mdcitefix:refs -->"
 
 
@@ -63,6 +65,13 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
         key_to_entry[k] = (url, title, raw)
     for k, (url, title, raw) in refsec.items():
         key_to_entry.setdefault(k, (url, title, raw))
+
+    # Add URLs from inline link citations [N](URL)
+    # Inline link URLs take precedence over definitions
+    for cite in cites:
+        if cite.inline_url:
+            for k in cite.keys:
+                key_to_entry[k] = (cite.inline_url, None, "")
 
     # 5) resolve missing keys
     missing: List[str] = []
@@ -135,7 +144,36 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
                 body = compact_ranges([int(u) for u in uniq])
             else:
                 body = ", ".join(uniq)
-            new_token = f"[{body}]"
+
+            # Determine whether to use inline link format
+            use_inline = False
+            inline_url = None
+
+            if opt.preserve_inline_links and cite.inline_url:
+                # Keep existing inline link format
+                use_inline = True
+                inline_url = cite.inline_url
+            elif opt.insert_inline_links:
+                # Convert to inline link format
+                use_inline = True
+                # Get URL from key_to_entry for the first mapped number
+                if uniq:
+                    first_key = uniq[0]
+                    # Find original key for this mapped number
+                    orig_key = None
+                    for k, v in renumber_map.items():
+                        if v == first_key:
+                            orig_key = k
+                            break
+                    if orig_key:
+                        url_data = key_to_entry.get(orig_key, (None, None, ""))
+                        inline_url = url_data[0] if url_data[0] else "MISSING_URL"
+
+            if use_inline and inline_url:
+                new_token = f"[{body}]({inline_url})"
+            else:
+                new_token = f"[{body}]"
+
             new_text = (
                 new_text[: cite.span_start] + new_token + new_text[cite.span_end :]
             )

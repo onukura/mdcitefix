@@ -4,39 +4,44 @@ This document simulates the chaotic citation patterns often found in LLM-generat
 
 ## Introduction
 
-According to [[5](https://arxiv.org/abs/2301.12345)] the field has evolved significantly.
-Earlier work [1] established the foundation, while recent studies [2] have expanded on this.
+According to [[1]] the field has evolved significantly.
+Earlier work [6] established the foundation, while recent studies [10] have expanded on this.
 
 ## Background
 
-The seminal paper [[1](https://example.com/seminal-work)] introduced the concept.
-This was later refined [3] in multiple follow-up studies [[7](https://example.com/follow-up)].
-Another perspective can be found in [[10](https://example.com/seminal-work)] which is actually the same paper.
+The seminal paper [[2]] introduced the concept.
+This was later refined [2] in multiple follow-up studies [[3]].
+Another perspective can be found in [[2]] which is actually the same paper.
 
 ## Methodology
 
-We follow the approach from [4], building on insights from [[8](https://doi.org/10.1234/xyz)].
-The technique described in [5] and [[15](https://example.com/technique)] provides the framework.
+We follow the approach from [11], building on insights from [[4]].
+The technique described in [5] and [[5]] provides the framework.
 
 ## Results
 
-Our findings align with [[3](https://example.com/findings)] and contradict [[20](https://example.com/other-findings)].
-See also [6] for additional context, and [[6](https://example.com/context)] for details.
+Our findings align with [[6]] and contradict [[7]].
+See also [8] for additional context, and [[8]] for details.
 
 ## Discussion
 
-Multiple sources [[100](https://arxiv.org/abs/2301.12345)], [2], and [[25](https://example.com/follow-up)]
-support our conclusions. The framework from [4] remains relevant.
+Multiple sources [[1]], [10], and [[3]]
+support our conclusions. The framework from [11] remains relevant.
 
 ## Conclusion
 
-This work synthesizes ideas from [6] and recent developments [[50](https://example.com/recent)].
+This work synthesizes ideas from [8] and recent developments [[9]].
 
 ## References
 <!-- mdcitefix:refs -->
-[1]: https://example.com/foundation
-[2]: https://example.com/expansion
-[3]: https://example.com/seminal-work
-[4]: https://example.com/approach
+[1]: https://arxiv.org/abs/2301.12345
+[2]: https://example.com/seminal-work
+[3]: https://example.com/follow-up
+[4]: https://doi.org/10.1234/xyz
 [5]: https://example.com/technique
-[6]: https://example.com/context
+[6]: https://example.com/findings
+[7]: https://example.com/other-findings
+[8]: https://example.com/context
+[9]: https://example.com/recent
+[10]: https://example.com/expansion
+[11]: https://example.com/approach
