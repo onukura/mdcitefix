@@ -23,16 +23,16 @@ def process_data(items):
     return results[3]  # [3] is just array indexing
 ```
 
-But outside the code block, [1] and [2] should be updated. The undefined
-citations [404], [999], [1234] will generate warnings.
+But outside the code block, [4] and [5] should be updated. The undefined
+citations [1], [2], [3] will generate warnings.
 
 ## More Content
 
-Valid references [1], [2] mixed with invalid [404], [999].
-Duplicates [10], [20], [30] should be merged.
+Valid references [4], [5] mixed with invalid [1], [2].
+Duplicates [8], [8], [8] should be merged.
 
-Inline code like `array[5]` should not be treated as citation.
-But this [5] outside backticks should be (even though it has no definition).
+Inline code like `array[6]` should not be treated as citation.
+But this [6] outside backticks should be (even though it has no definition).
 
 ## Unclosed Code Block
 
@@ -43,23 +43,23 @@ function broken() {
     return "unclosed";
 ```
 
-But we continue the document anyway. References [1], [2], [10] appear here.
-Missing references [404], [999], [1234], [5] also reappear.
+But we continue the document anyway. References [4], [5], [8] appear here.
+Missing references [1], [2], [3], [6] also reappear.
 
 ## Malformed URLs
 
-The reference [100] has a completely broken URL.
-The reference [200] has no URL at all.
-The reference [300] has an empty URL.
+The reference [9] has a completely broken URL.
+The reference [10] has no URL at all.
+The reference [11] has an empty URL.
 
-But [1] and [2] are fine.
+But [4] and [5] are fine.
 
 ## Duplicates Everywhere
 
-Same URL: [10], [20], [30] all identical.
-Another set: [11], [21], [31] also identical.
+Same URL: [8], [8], [8] all identical.
+Another set: [12], [12], [12] also identical.
 
-Mixed with valid unique citations [1], [2] and missing ones [404], [999].
+Mixed with valid unique citations [4], [5] and missing ones [1], [2].
 
 [300]:
 <!-- mdcitefix:refs -->
@@ -71,3 +71,7 @@ Mixed with valid unique citations [1], [2] and missing ones [404], [999].
 [6]: MISSING_URL
 [7]: MISSING_URL
 [8]: https://example.com/duplicate-url "First instance"
+[9]: htpt://broken:url:scheme "Malformed URL"
+[10]: MISSING_URL
+[11]: MISSING_URL
+[12]: https://example.com/another-duplicate "First instance"

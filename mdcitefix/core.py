@@ -113,6 +113,9 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
 
     # Build reverse renumber_map for O(1) lookup (optimization)
     reverse_renumber_map: Dict[str, str] = {v: k for k, v in renumber_map.items()}
+    number_to_keys: Dict[str, List[str]] = {}
+    for key, number in {**renumber_map, **merged_key_to_number}.items():
+        number_to_keys.setdefault(number, []).append(key)
 
     # 8) rewrite in-text citations (only unprotected segments)
     def map_key(k: str) -> str:
@@ -162,11 +165,20 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
                 # Get URL from key_to_entry for the first mapped number
                 if uniq:
                     first_key = uniq[0]
-                    # Find original key for this mapped number using reverse map
+                    # Find original key(s) for this mapped number using reverse map
                     orig_key = reverse_renumber_map.get(first_key)
-                    if orig_key:
-                        url_data = key_to_entry.get(orig_key, (None, None, ""))
-                        inline_url = url_data[0] if url_data[0] else "MISSING_URL"
+                    candidate_keys = (
+                        [orig_key] if orig_key else number_to_keys.get(first_key, [])
+                    )
+                    for candidate in candidate_keys:
+                        if not candidate:
+                            continue
+                        url_data = key_to_entry.get(candidate, (None, None, ""))
+                        if url_data[0]:
+                            inline_url = url_data[0]
+                            break
+                    if inline_url is None:
+                        inline_url = "MISSING_URL"
 
             if use_inline and inline_url:
                 new_token = f"[{body}]({inline_url})"
@@ -233,13 +245,16 @@ _REFDEF_RE = re.compile(r"(?m)^\[(\d+)\]:[ \t].*$")
 
 def _strip_numeric_refdefs(md: str) -> str:
     # remove any numeric refdef lines (keep non-numeric refs untouched)
-    lines = md.splitlines(True)
-    kept = []
-    for ln in lines:
-        if _REFDEF_RE.match(ln):
+    segments = split_protected_segments(md)
+    kept_segments: List[str] = []
+    for seg in segments:
+        if seg.protected:
+            kept_segments.append(seg.text)
             continue
-        kept.append(ln)
-    return "".join(kept)
+        lines = seg.text.splitlines(True)
+        kept_lines = [ln for ln in lines if not _REFDEF_RE.match(ln)]
+        kept_segments.append("".join(kept_lines))
+    return "".join(kept_segments)
 
 
 def _ensure_references_section(

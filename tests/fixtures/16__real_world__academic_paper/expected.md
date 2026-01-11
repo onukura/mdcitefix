@@ -55,56 +55,56 @@ The attention mechanism [2] computes weighted combinations of input representati
 Attention(Q, K, V) = softmax(QK^T / sqrt(d_k))V
 ```
 
-This formulation [45] allows the model to focus on relevant parts of the input sequence. Multi-head attention extends this by learning multiple attention patterns simultaneously.
+This formulation [2] allows the model to focus on relevant parts of the input sequence. Multi-head attention extends this by learning multiple attention patterns simultaneously.
 
 ### 3.2 Model Architecture
 
-The original transformer [45] consists of an encoder-decoder structure with:
+The original transformer [2] consists of an encoder-decoder structure with:
 
 - Multi-head self-attention layers
 - Position-wise feed-forward networks
 - Layer normalization and residual connections
 - Positional encodings
 
-Later work [17,8,23] explored encoder-only, decoder-only, and hybrid variants for different applications.
+Later work [3, 4, 5] explored encoder-only, decoder-only, and hybrid variants for different applications.
 
 ### 3.3 Training Efficiency
 
-Transformers [45] offer significant computational advantages over recurrent architectures [20,36]:
+Transformers [2] offer significant computational advantages over recurrent architectures [20,36]:
 
 1. Parallel processing of sequences
 2. More efficient gradient flow
 3. Better hardware utilization
 
-These properties enable training on much larger datasets [17,8,32].
+These properties enable training on much larger datasets [3, 5, 6].
 
 ## 4. Pre-Training Strategies
 
 ### 4.1 Masked Language Modeling
 
-BERT [17] introduced masked language modeling, where random tokens are masked and the model learns to predict them. This bidirectional approach [17] contrasts with traditional left-to-right language modeling [8].
+BERT [3] introduced masked language modeling, where random tokens are masked and the model learns to predict them. This bidirectional approach [3] contrasts with traditional left-to-right language modeling [5].
 
-Variants like RoBERTa [19] and ALBERT [22] refined the training procedure and model architecture. SpanBERT [14] masks contiguous spans rather than individual tokens.
+Variants like RoBERTa [8] and ALBERT [24] refined the training procedure and model architecture. SpanBERT [25] masks contiguous spans rather than individual tokens.
 
 ### 4.2 Autoregressive Language Modeling
 
-GPT [8] and its successors [23,7] use causal language modeling, predicting the next token given previous context. This unidirectional approach [8,23] excels at text generation tasks.
+GPT [5] and its successors [4, 12] use causal language modeling, predicting the next token given previous context. This unidirectional approach [4, 5] excels at text generation tasks.
 
-The GPT family demonstrates consistent improvements with scale [8,23,7,32]. GPT-2 [23] showed surprising zero-shot capabilities, while GPT-3 [7] achieved strong few-shot performance across diverse tasks.
+The GPT family demonstrates consistent improvements with scale [4, 5, 6, 12]. GPT-2 [4] showed surprising zero-shot capabilities, while GPT-3 [12] achieved strong few-shot performance across diverse tasks.
 
 ### 4.3 Hybrid Approaches
 
-Some models [19,39] combine bidirectional and autoregressive objectives. XLNet [39] uses permutation language modeling to capture bidirectional context while maintaining autoregressive factorization.
+Some models [8, 26] combine bidirectional and autoregressive objectives. XLNet [26] uses permutation language modeling to capture bidirectional context while maintaining autoregressive factorization.
 
 ## 5. Scaling Laws
 
-Kaplan et al. [32] characterized how model performance scales with:
+Kaplan et al. [6] characterized how model performance scales with:
 
 - Model size (number of parameters)
 - Dataset size (number of tokens)
 - Compute budget (FLOPs)
 
-These scaling laws [32] suggest that performance improves predictably with scale, motivating larger models [7,38].
+These scaling laws [6] suggest that performance improves predictably with scale, motivating larger models [12, 27].
 
 However, scaling presents challenges [32,38]:
 
@@ -112,67 +112,67 @@ However, scaling presents challenges [32,38]:
 2. Environmental impact
 3. Accessibility and democratization
 
-Efficient training methods [19,22] and model compression [43,40] address some concerns.
+Efficient training methods [8, 24] and model compression [28, 29] address some concerns.
 
 ## 6. Applications
 
 ### 6.1 Machine Translation
 
-Transformers [45] revolutionized machine translation, achieving state-of-the-art results. Multilingual models [4,26] enable translation between many language pairs using shared representations.
+Transformers [2] revolutionized machine translation, achieving state-of-the-art results. Multilingual models [20, 21] enable translation between many language pairs using shared representations.
 
 ### 6.2 Question Answering
 
-BERT-based models [17,28] excel at extractive question answering. Dense passage retrieval [16] combines neural encoders with efficient search. Recent work [7,41] explores generative question answering.
+BERT-based models [3, 9] excel at extractive question answering. Dense passage retrieval [30] combines neural encoders with efficient search. Recent work [10, 12] explores generative question answering.
 
 ### 6.3 Text Generation
 
-Autoregressive models [8,23,7] generate coherent long-form text. Applications include:
+Autoregressive models [4, 5, 12] generate coherent long-form text. Applications include:
 
-- Creative writing [7]
-- Code generation [9]
-- Dialogue systems [41,1]
+- Creative writing [12]
+- Code generation [31]
+- Dialogue systems [10, 12]
 
-Challenges include factual accuracy [13], bias [6], and controllability [44,31].
+Challenges include factual accuracy [32], bias [33], and controllability [34, 35].
 
 ### 6.4 Information Extraction
 
-Transformer models [17,19] improve named entity recognition, relation extraction, and event detection. End-to-end models [3,27] jointly extract entities and relations.
+Transformer models [3, 8] improve named entity recognition, relation extraction, and event detection. End-to-end models [36, 37] jointly extract entities and relations.
 
 ## 7. Challenges and Future Directions
 
 ### 7.1 Interpretability
 
-Understanding transformer attention patterns [45,2,37] remains challenging. Probing studies [2,37] examine what linguistic knowledge models capture. Attention visualization [2] provides some insights but has limitations.
+Understanding transformer attention patterns [2, 38] remains challenging. Probing studies [38] examine what linguistic knowledge models capture. Attention visualization [38] provides some insights but has limitations.
 
 ### 7.2 Efficiency
 
-Training costs [32,38] limit access to cutting-edge models. Research directions include:
+Training costs [6, 27] limit access to cutting-edge models. Research directions include:
 
-- Model compression [43,40]
-- Efficient architectures [22,30]
-- Few-shot learning [7,25]
+- Model compression [28, 29]
+- Efficient architectures [24, 39]
+- Few-shot learning [12]
 
 ### 7.3 Robustness
 
-Models exhibit brittleness to adversarial examples [13,5] and distribution shift [10,33]. Improving robustness requires better training procedures [10,5] and evaluation protocols [33].
+Models exhibit brittleness to adversarial examples [32, 40] and distribution shift [41, 42]. Improving robustness requires better training procedures [40, 41] and evaluation protocols [42].
 
 ### 7.4 Multimodal Learning
 
-Extending transformers to vision [26,46], speech [26], and cross-modal tasks [46] shows promise. Vision transformers [46] adapt the architecture for images.
+Extending transformers to vision [21, 43], speech [21], and cross-modal tasks [43] shows promise. Vision transformers [43] adapt the architecture for images.
 
 ## 8. Conclusion
 
-Transformer architectures [45] have fundamentally advanced natural language understanding. Pre-training strategies [17,8] enable transfer learning at unprecedented scale. However, challenges in interpretability [2,37], efficiency [32,43], and robustness [5,13,10] remain.
+Transformer architectures [2] have fundamentally advanced natural language understanding. Pre-training strategies [3, 5] enable transfer learning at unprecedented scale. However, challenges in interpretability [38], efficiency [6, 28], and robustness [32, 40, 41] remain.
 
 Future research directions include:
 
-- Improved training efficiency [22,30,40]
-- Better few-shot learning [7,25]
-- Enhanced robustness [5,10,33]
-- Multimodal extensions [26,46]
-- Ethical considerations [6,13,31]
+- Improved training efficiency [24, 29, 39]
+- Better few-shot learning [12]
+- Enhanced robustness [40, 41, 42]
+- Multimodal extensions [21, 43]
+- Ethical considerations [32, 33, 35]
 
-The field continues to evolve rapidly, with new architectures and training paradigms emerging regularly [23,7,38,41].
+The field continues to evolve rapidly, with new architectures and training paradigms emerging regularly [4, 10, 12, 27].
 
 ## References
 
@@ -199,3 +199,23 @@ The field continues to evolve rapidly, with new architectures and training parad
 21. XLM: Cross-lingual Language Model Pretraining — https://arxiv.org/abs/1904.09223
 22. Word2Vec: Distributed Representations of Words — https://arxiv.org/abs/1301.3781
 23. GloVe: Global Vectors for Word Representation — https://nlp.stanford.edu/pubs/glove.pdf
+24. ALBERT: A Lite BERT — https://arxiv.org/abs/1909.11942
+25. SpanBERT: Masking Contiguous Spans — https://arxiv.org/abs/1907.10529
+26. XLNet: Generalized Autoregressive Pretraining — https://arxiv.org/abs/1906.08237
+27. PaLM: Scaling Language Modeling — https://arxiv.org/abs/2204.02311
+28. DistilBERT: Distilled BERT — https://arxiv.org/abs/1910.01108
+29. Model Compression Techniques — https://arxiv.org/abs/2106.09685
+30. Dense Passage Retrieval — https://arxiv.org/abs/2004.04906
+31. Codex: Evaluating Large Language Models Trained on Code — https://arxiv.org/abs/2107.03374
+32. Truthful AI: Developing Models That Avoid Hallucination — https://arxiv.org/abs/2109.07958
+33. On the Dangers of Stochastic Parrots — https://arxiv.org/abs/2005.14050
+34. CTRL: Conditional Transformer Language Model — https://arxiv.org/abs/1909.05858
+35. Ethical Considerations in NLP — https://arxiv.org/abs/2009.06807
+36. SpanBERT: Improving Entity Linking — https://arxiv.org/abs/1909.03193
+37. Joint Entity and Relation Extraction — https://arxiv.org/abs/1911.03894
+38. What Does BERT Look At? — https://arxiv.org/abs/1906.04341
+39. Linformer: Self-Attention with Linear Complexity — https://arxiv.org/abs/2006.03654
+40. Adversarial Examples for NLP — https://arxiv.org/abs/1807.06732
+41. Distributionally Robust NLP — https://arxiv.org/abs/2005.00614
+42. Evaluation Beyond Accuracy — https://arxiv.org/abs/2004.12239
+43. Vision Transformer — https://arxiv.org/abs/2010.11929

@@ -18,5 +18,9 @@ def example():
 
 But it's still inside the unclosed code block.
 Citations [6] here should also be protected.
+
+[1]: https://example.com/ref1
+[2]: https://example.com/ref2
+[3]: https://example.com/ref3
 <!-- mdcitefix:refs -->
 [1]: https://example.com/ref1

@@ -29,15 +29,15 @@ pip install fastapi uvicorn sqlalchemy alembic
 ```
 
 Our stack includes:
-- FastAPI [3] for the web framework
-- Uvicorn [4] as the ASGI server
-- SQLAlchemy [15] for database ORM
+- FastAPI [1] for the web framework
+- Uvicorn [12] as the ASGI server
+- SQLAlchemy [2] for database ORM
 - Alembic [16] for migrations
-- PostgreSQL [14] as the database
+- PostgreSQL [17] as the database
 
 ## Database Models
 
-Using SQLAlchemy [15], we define our models with type-safe schemas:
+Using SQLAlchemy [2], we define our models with type-safe schemas:
 
 ```python
 from sqlalchemy import Column, Integer, String, DateTime
@@ -54,7 +54,7 @@ class User(Base):
     created_at = Column(DateTime)
 ```
 
-Database design follows normalization principles [13] and indexing strategies [14] for optimal query performance.
+Database design follows normalization principles [18] and indexing strategies [17] for optimal query performance.
 
 ## API Endpoints
 
@@ -76,11 +76,11 @@ async def create_user(user: UserCreate):
     pass
 ```
 
-Pydantic [7] automatically validates request data and generates OpenAPI schemas [10].
+Pydantic [9] automatically validates request data and generates OpenAPI schemas [13].
 
 ### Authentication
 
-We implement JWT-based authentication [12] using the recommended patterns [12,17]:
+We implement JWT-based authentication [4] using the recommended patterns [12,17]:
 
 ```python
 from fastapi import Depends, HTTPException, status
@@ -94,15 +94,15 @@ async def protected_route(token: str = Depends(oauth2_scheme)):
     pass
 ```
 
-Security best practices [17,18] include:
-- Password hashing with bcrypt [18]
-- Token expiration and refresh [12]
-- HTTPS-only cookies [17]
-- CORS configuration [20]
+Security best practices [19, 20] include:
+- Password hashing with bcrypt [20]
+- Token expiration and refresh [4]
+- HTTPS-only cookies [19]
+- CORS configuration [21]
 
 ## Async Database Operations
 
-FastAPI's async support [8] allows concurrent database operations using SQLAlchemy's async engine [15]:
+FastAPI's async support [3] allows concurrent database operations using SQLAlchemy's async engine [15]:
 
 ```python
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
@@ -121,7 +121,7 @@ async def list_users(db: AsyncSession = Depends(get_db)):
     return result.scalars().all()
 ```
 
-This approach is detailed in the SQLAlchemy async documentation [15] and FastAPI's dependency injection guide [3].
+This approach is detailed in the SQLAlchemy async documentation [2] and FastAPI's dependency injection guide [1].
 
 ## Testing
 
@@ -147,7 +147,7 @@ We use pytest-asyncio [23] for async test execution and coverage.py [24] for cod
 
 ### Containerization
 
-Docker [19] containerizes the application for consistent deployments:
+Docker [6] containerizes the application for consistent deployments:
 
 ```dockerfile
 FROM python:3.11-slim
@@ -160,17 +160,17 @@ COPY . .
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
-Follow Docker best practices [19,25] for multi-stage builds and security hardening.
+Follow Docker best practices [6, 25] for multi-stage builds and security hardening.
 
 ### Cloud Deployment
 
 Deployment options include:
-- AWS ECS/Fargate [21] for container orchestration
+- AWS ECS/Fargate [5] for container orchestration
 - Kubernetes [26] for large-scale deployments
 - Heroku [27] for simple hosting
 - Railway [28] or Render [29] for modern platforms
 
-Each platform has tradeoffs discussed in the deployment guide [21].
+Each platform has tradeoffs discussed in the deployment guide [5].
 
 ### Monitoring
 
@@ -180,7 +180,7 @@ Production monitoring uses:
 - Sentry [32] for error tracking
 - ELK Stack [33] for log aggregation
 
-Application performance monitoring (APM) tools [30,32] help identify bottlenecks.
+Application performance monitoring (APM) tools [30, 32] help identify bottlenecks.
 
 ## Performance Optimization
 
@@ -204,26 +204,26 @@ async def cached_operation():
     return result
 ```
 
-Caching strategies [34,35] significantly reduce database load.
+Caching strategies [34, 35] significantly reduce database load.
 
 ### Database Query Optimization
 
 Use SQLAlchemy's query optimization features [15]:
-- Lazy loading vs eager loading [15]
+- Lazy loading vs eager loading [2]
 - Query result caching [35]
-- Connection pooling [14,15]
-- Index optimization [14]
+- Connection pooling [2, 17]
+- Index optimization [17]
 
 ## Conclusion
 
-We've built a production-ready API using FastAPI [3], covering:
-- Type-safe request/response handling [7]
-- Async database operations [8,15]
-- JWT authentication [12]
-- Testing strategies [22,23]
-- Deployment and monitoring [19,21,30,32]
+We've built a production-ready API using FastAPI [1], covering:
+- Type-safe request/response handling [9]
+- Async database operations [2, 3]
+- JWT authentication [4]
+- Testing strategies [22, 23]
+- Deployment and monitoring [5, 6, 30, 32]
 
-For further reading, see the official FastAPI documentation [3], SQLAlchemy async guide [15], and the Twelve-Factor App methodology [36].
+For further reading, see the official FastAPI documentation [1], SQLAlchemy async guide [2], and the Twelve-Factor App methodology [36].
 
 ## Additional Resources
 
@@ -246,3 +246,27 @@ For further reading, see the official FastAPI documentation [3], SQLAlchemy asyn
 [13]: https://swagger.io/specification/ "OpenAPI Specification"
 [14]: https://json-schema.org/ "JSON Schema"
 [15]: https://www.python.org/downloads/ "Python Downloads"
+[16]: https://alembic.sqlalchemy.org/ "Alembic Migrations"
+[17]: https://use-the-index-luke.com/ "SQL Indexing"
+[18]: https://en.wikipedia.org/wiki/Database_normalization "Database Normalization"
+[19]: https://owasp.org/www-project-web-security-testing-guide/ "OWASP Security Guide"
+[20]: https://github.com/pyca/bcrypt/ "bcrypt Library"
+[21]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS "CORS Documentation"
+[22]: https://docs.pytest.org/ "pytest Documentation"
+[23]: https://github.com/pytest-dev/pytest-asyncio "pytest-asyncio"
+[24]: https://coverage.readthedocs.io/ "coverage.py"
+[25]: https://docs.docker.com/engine/security/ "Docker Security"
+[26]: https://kubernetes.io/docs/ "Kubernetes Documentation"
+[27]: https://www.heroku.com/ "Heroku Platform"
+[28]: https://railway.app/ "Railway"
+[29]: https://render.com/ "Render"
+[30]: https://prometheus.io/ "Prometheus Monitoring"
+[31]: https://grafana.com/ "Grafana"
+[32]: https://sentry.io/ "Sentry Error Tracking"
+[33]: https://www.elastic.co/elastic-stack "ELK Stack"
+[34]: https://redis.io/ "Redis"
+[35]: https://docs.sqlalchemy.org/en/14/orm/queryguide.html "SQLAlchemy Query Guide"
+[36]: https://12factor.net/ "The Twelve-Factor App"
+[37]: https://github.com/tiangolo/fastapi "FastAPI GitHub"
+[38]: https://realpython.com/ "Real Python"
+[39]: https://github.com/mjhea0/awesome-fastapi "Awesome FastAPI"

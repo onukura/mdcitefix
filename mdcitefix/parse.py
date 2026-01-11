@@ -26,68 +26,44 @@ def split_protected_segments(
 ) -> List[Segment]:
     warnings = warnings if warnings is not None else []
     segs: List[Segment] = []
-
-    i = 0
-    n = len(md)
-    buf = []
+    buf: List[str] = []
     protected = False
-    fence = None  # ``` or ~~~
+    fence: Optional[str] = None
     seg_index = 0
 
-    def flush():
+    def flush() -> None:
         nonlocal seg_index, buf, protected
         if buf:
             segs.append(Segment(seg_index, protected, "".join(buf)))
             seg_index += 1
             buf = []
 
-    # very small state machine: fence code blocks only
-    while i < n:
-        # detect fence start/end at line start
-        if md.startswith("```", i) or md.startswith("~~~", i):
-            # must be line start (or after \n)
-            if i == 0 or md[i - 1] == "\n":
-                mark = md[i : i + 3]
-                if not protected:
-                    flush()
-                    protected = True
-                    fence = mark
-                else:
-                    if fence == mark:
-                        # end fence
-                        # include fence line in protected segment
-                        # find end of line
-                        pass
-                # consume full line
-                j = md.find("\n", i)
-                if j == -1:
-                    buf.append(md[i:])
-                    i = n
-                    if protected:
-                        # unclosed fence
-                        warnings.append("Unclosed fenced code block; protected to EOF.")
-                    flush()
-                    return segs
-                buf.append(md[i : j + 1])
-                i = j + 1
-                # toggle on end fence
-                if protected and fence == mark:
-                    # If this line is an end fence, we need heuristic:
-                    # end fence usually has only fence chars + optional spaces
-                    # We'll treat any fence line inside protected as potential end when it matches.
-                    # To keep it simple: if line is exactly fence + optional spaces
-                    pass
-                # Heuristic: toggle if this fence line has no extra backticks?
-                # We'll do a simpler approach:
-                if protected and fence == mark:
-                    # If next chars after mark on this line are only spaces/tabs
-                    pass
+    fence_re = re.compile(r"^ {0,3}([`~]{3,})(.*)$")
+
+    for line in md.splitlines(True):
+        match = fence_re.match(line)
+        if match:
+            marker = match.group(1)
+            rest = match.group(2)
+            if not protected:
+                flush()
+                protected = True
+                fence = marker
+                buf.append(line)
+                continue
+            if (
+                fence
+                and marker[0] == fence[0]
+                and len(marker) >= len(fence)
+                and rest.strip() == ""
+            ):
+                buf.append(line)
+                flush()
+                protected = False
+                fence = None
                 continue
 
-        # inline code protection: we keep it simple by not splitting; safer to treat it as unprotected.
-        # If you want, extend: detect backticks and mark as protected within segment.
-        buf.append(md[i])
-        i += 1
+        buf.append(line)
 
     flush()
     if protected:
@@ -178,7 +154,8 @@ def extract_intext_citations(segments: List[Segment]) -> List[CiteToken]:
 
 
 _REFDEF_RE = re.compile(
-    r'(?m)^\[(?P<k>\d+)\]:\s+(?P<url>\S+)(?:\s+"(?P<title>[^"]+)")?\s*$'
+    r'(?m)^\[(?P<k>\d+)\]:\s+(?P<url><[^>]+>|\S+)'
+    r'(?:\s+(?:"(?P<title_dq>[^"]+)"|\'(?P<title_sq>[^\']+)\'|\((?P<title_paren>[^)]+)\)))?\s*$'
 )
 
 
@@ -187,7 +164,9 @@ def extract_refdefs(md: str) -> Dict[str, Tuple[str, Optional[str], str]]:
     for m in _REFDEF_RE.finditer(md):
         k = m.group("k")
         url = m.group("url")
-        title = m.group("title")
+        if url.startswith("<") and url.endswith(">"):
+            url = url[1:-1]
+        title = m.group("title_dq") or m.group("title_sq") or m.group("title_paren")
         out[k] = (url, title, m.group(0))
     return out
 

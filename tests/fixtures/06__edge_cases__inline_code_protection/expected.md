@@ -36,3 +36,8 @@ After the code, we cite the implementation guide [6] and best practices [7].
 <!-- mdcitefix:refs -->
 [1]: https://example.com/source1
 [2]: https://example.com/source2
+[3]: https://example.com/source3
+[4]: https://example.com/source4
+[5]: https://example.com/source5
+[6]: https://example.com/source6
+[7]: https://example.com/source7
