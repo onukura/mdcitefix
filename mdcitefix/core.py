@@ -10,6 +10,7 @@ from mdcitefix.parse import (
     extract_intext_citations,
     extract_refdefs,
     extract_reference_section_entries,
+    extract_list_references,
     split_protected_segments,
 )
 
@@ -59,11 +60,16 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
     # 4) parse reference section entries (optional backup source)
     refsec = extract_reference_section_entries(md)
 
-    # Build raw key->(url,title)
+    # 5) parse list-style references (- [1] format, e.g., from arxiv2md)
+    list_refs = extract_list_references(md)
+
+    # Build raw key->(url,title,raw)
     key_to_entry: Dict[str, tuple[Optional[str], Optional[str], str]] = {}
     for k, (url, title, raw) in refdefs.items():
         key_to_entry[k] = (url, title, raw)
     for k, (url, title, raw) in refsec.items():
+        key_to_entry.setdefault(k, (url, title, raw))
+    for k, (url, title, raw) in list_refs.items():
         key_to_entry.setdefault(k, (url, title, raw))
 
     # Add URLs from inline link citations [N](URL)
@@ -200,12 +206,24 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
     # Build new defs from used_keys_ordered + missing
     for old_key in used_keys_ordered:
         new_n = renumber_map[old_key]
-        url, title, _raw = key_to_entry.get(old_key, (None, None, ""))
-        if not url:
-            url = "MISSING_URL"
-        if title:
+        url, title, raw = key_to_entry.get(old_key, (None, None, ""))
+
+        # Check if this is a list-style reference (no URL but has content)
+        if not url and title:
+            # List-style reference (- [N] format)
+            new_defs_lines.append(f"- [{new_n}]")
+            # Add content lines
+            for line in title.split("\n"):
+                if line.strip():
+                    new_defs_lines.append(line)
+        elif not url:
+            # Missing URL
+            new_defs_lines.append(f"[{new_n}]: MISSING_URL")
+        elif title:
+            # URL-style with title
             new_defs_lines.append(f'[{new_n}]: {url} "{title}"')
         else:
+            # URL-style without title
             new_defs_lines.append(f"[{new_n}]: {url}")
     new_defs = "\n" + "\n".join(new_defs_lines) + "\n"
 
@@ -241,19 +259,47 @@ def fix_markdown(md: str, opt: FixOptions = FixOptions()) -> tuple[str, FixRepor
 
 
 _REFDEF_RE = re.compile(r"(?m)^\[(\d+)\]:[ \t].*$")
+_LIST_REF_RE = re.compile(r"(?m)^-\s*\[(\d+)\]\s*$")
 
 
 def _strip_numeric_refdefs(md: str) -> str:
-    # remove any numeric refdef lines (keep non-numeric refs untouched)
+    # remove any numeric refdef lines and list-style references (keep non-numeric refs untouched)
     segments = split_protected_segments(md)
     kept_segments: List[str] = []
+
     for seg in segments:
         if seg.protected:
             kept_segments.append(seg.text)
             continue
+
         lines = seg.text.splitlines(True)
-        kept_lines = [ln for ln in lines if not _REFDEF_RE.match(ln)]
+        kept_lines = []
+        in_list_ref = False
+
+        for i, ln in enumerate(lines):
+            # Check if this is a URL-style refdef line
+            if _REFDEF_RE.match(ln):
+                continue  # Skip
+
+            # Check if this is the start of a list-style reference
+            if _LIST_REF_RE.match(ln):
+                in_list_ref = True
+                continue  # Skip
+
+            # If we're in a list reference, skip content lines until we hit an empty line or new item
+            if in_list_ref:
+                if ln.strip() == "" or _LIST_REF_RE.match(ln):
+                    in_list_ref = False
+                    if _LIST_REF_RE.match(ln):
+                        continue  # Skip new list item
+                    # Keep empty line
+                    kept_lines.append(ln)
+                continue  # Skip content line
+
+            kept_lines.append(ln)
+
         kept_segments.append("".join(kept_lines))
+
     return "".join(kept_segments)
 
 

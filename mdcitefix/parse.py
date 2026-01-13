@@ -154,7 +154,7 @@ def extract_intext_citations(segments: List[Segment]) -> List[CiteToken]:
 
 
 _REFDEF_RE = re.compile(
-    r'(?m)^\[(?P<k>\d+)\]:\s+(?P<url><[^>]+>|\S+)'
+    r"(?m)^\[(?P<k>\d+)\]:\s+(?P<url><[^>]+>|\S+)"
     r'(?:\s+(?:"(?P<title_dq>[^"]+)"|\'(?P<title_sq>[^\']+)\'|\((?P<title_paren>[^)]+)\)))?\s*$'
 )
 
@@ -201,4 +201,62 @@ def extract_reference_section_entries(
         url = um.group(1).rstrip(").,;")
         title = rest[: um.start()].strip(" —-–\t") or None
         out.setdefault(k, (url, title, lm.group(0)))
+    return out
+
+
+def extract_list_references(
+    md: str,
+) -> Dict[str, Tuple[Optional[str], Optional[str], str]]:
+    """
+    Extract list-style references (- [1] Author. Title. format) without URLs.
+    Returns key->(url|None, title|content, raw_block).
+    This handles arxiv2md style references that don't have URLs.
+    """
+    out: Dict[str, Tuple[Optional[str], Optional[str], str]] = {}
+
+    # Locate References section
+    sec = re.search(r"(?im)^##\s+References?\s*$", md)
+    if not sec:
+        return out
+
+    start = sec.end()
+    # Until next heading or EOF
+    tail = md[start:]
+    m2 = re.search(r"(?im)^##\s+", tail)
+    block = tail[: m2.start()] if m2 else tail
+
+    lines = block.split("\n")
+    current_num = None
+    current_content = []
+
+    for line in lines:
+        # Match list item with number: - [1]
+        match = re.match(r"^-\s*\[(\d+)\]\s*$", line)
+        if match:
+            # Save previous entry
+            if current_num is not None and current_content:
+                content_text = "\n".join(current_content).strip()
+                # Try to extract URL if present
+                url_match = re.search(r"(https?://\S+)", content_text)
+                url = url_match.group(1).rstrip(").,;") if url_match else None
+                out[current_num] = (
+                    url,
+                    content_text,
+                    f"- [{current_num}]\n{content_text}",
+                )
+
+            # Start new entry
+            current_num = match.group(1)
+            current_content = []
+        elif current_num is not None and line.strip():
+            # Continuation of current entry
+            current_content.append(line)
+
+    # Save last entry
+    if current_num is not None and current_content:
+        content_text = "\n".join(current_content).strip()
+        url_match = re.search(r"(https?://\S+)", content_text)
+        url = url_match.group(1).rstrip(").,;") if url_match else None
+        out[current_num] = (url, content_text, f"- [{current_num}]\n{content_text}")
+
     return out
