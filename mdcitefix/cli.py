@@ -4,7 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from .core import FixOptions, fix_markdown
+from mdcitefix.core import FixOptions, fix_markdown
 
 
 def main(argv: list[str] | None = None) -> int:

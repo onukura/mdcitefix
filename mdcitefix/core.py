@@ -5,8 +5,8 @@ import re
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
-from .normalize import compact_ranges, normalize_url
-from .parse import (
+from mdcitefix.normalize import compact_ranges, normalize_url
+from mdcitefix.parse import (
     extract_intext_citations,
     extract_refdefs,
     extract_reference_section_entries,

@@ -4,11 +4,14 @@ import json
 from mdcitefix.core import fix_markdown, FixOptions, FixReport
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
+REAL_WORLD_FIXTURES_DIR = Path(__file__).parent / "real_world_fixtures"
 
 
 def collect_fixture_cases():
     """フィクスチャディレクトリから全テストケースを収集"""
     cases = []
+
+    # Standard fixtures
     for test_dir in sorted(FIXTURES_DIR.iterdir()):
         if (
             not test_dir.is_dir()
@@ -22,6 +25,23 @@ def collect_fixture_cases():
             # Use directory name as test ID (format: NN__category__case_name)
             test_id = test_dir.name
             cases.append((test_id, test_dir))
+
+    # Real-world fixtures
+    if REAL_WORLD_FIXTURES_DIR.exists():
+        for test_dir in sorted(REAL_WORLD_FIXTURES_DIR.iterdir()):
+            if (
+                not test_dir.is_dir()
+                or test_dir.name.startswith(".")
+                or test_dir.name == "__pycache__"
+            ):
+                continue
+            input_file = test_dir / "input.md"
+            expected_file = test_dir / "expected.md"
+            if input_file.exists() and expected_file.exists():
+                # Prefix with "real_" to distinguish from synthetic fixtures
+                test_id = f"real_{test_dir.name}"
+                cases.append((test_id, test_dir))
+
     return cases
 
 

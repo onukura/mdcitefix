@@ -9,6 +9,14 @@ dependencies = []
 [project.scripts]
 mdcitefix = "mdcitefix.cli:main"
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mdcitefix"]
+include = ["mdcitefix/assets/*.html", "mdcitefix/assets/**/*.json"]
+
 [dependency-groups]
 dev = [
     "prek>=0.2.27",
